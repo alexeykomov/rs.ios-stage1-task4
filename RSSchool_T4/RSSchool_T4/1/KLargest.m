@@ -34,6 +34,13 @@ int getParentIndex(int n) {
     return (n - 1) / 2;
 }
 
+int compare(int a, int b, BOOL ignoreSign) {
+    if (ignoreSign) {
+        return abs(a) > abs(b) ? 1 : abs(a) < abs(b) ? -1 : 0;
+    }
+    return a > b ? 1 : a < b ? -1 : 0;
+}
+
 void swap(NSMutableArray *nodes, int indexA, int indexB) {
     id temp = [nodes objectAtIndex:indexB];
     [nodes setObject:[nodes objectAtIndex:indexA] atIndexedSubscript:indexB];
@@ -70,8 +77,9 @@ void swap(NSMutableArray *nodes, int indexA, int indexB) {
     INT_MIN;
     int current = [(NSNumber*) [self.heap objectAtIndex:indexHigh] intValue];
     
-    while (current < leftChild || current < rightChild) {
-        int indexLow = leftChild >= rightChild ?
+    while (compare(current, leftChild, self.ignoreSign) == -1 ||
+           compare(current, rightChild, self.ignoreSign) == -1) {
+        int indexLow = compare(leftChild, rightChild, self.ignoreSign) >= 0 ?
             indexLow1 : indexLow2;
         swap(self.heap, indexHigh, indexLow);
         
@@ -97,7 +105,7 @@ void swap(NSMutableArray *nodes, int indexA, int indexB) {
     int indexHigh = getParentIndex(indexLow);
     int parent = [(NSNumber*) getParent(self.heap, indexLow) intValue];
     int current = [(NSNumber*) [self.heap objectAtIndex:indexLow] intValue];
-    while (current > parent) {
+    while (compare(current, parent, self.ignoreSign) > 0) {
         swap(self.heap, indexLow, indexHigh);
         
         indexLow = indexHigh;
@@ -120,8 +128,7 @@ void swap(NSMutableArray *nodes, int indexA, int indexB) {
 }
 
 - (void) insert:(int) element {
-    int elementWithSign = self.ignoreSign ? abs(element) : element;
-    [self.heap addObject:@(elementWithSign)];
+    [self.heap addObject:@(element)];
     [self siftUp:[self.heap count] - 1];
 }
 

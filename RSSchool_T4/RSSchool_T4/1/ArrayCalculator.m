@@ -27,21 +27,42 @@ int min(int a, int b) {
             [preparedInput addObject:[array objectAtIndex:counter]];
         }
     }
-    
+    // First heap ignores sign, but only when number of negative multipliers is
+    // even.
     KLargest *heap = [[KLargest alloc] initWithElements:preparedInput
-                                             ignoreSign:isEven(numberOfItems)];
+                                             ignoreSign:YES];
     
     if ([heap.heap count] == 0) {
         return 0;
     }
     
     counter = 0;
+    int counterOfNegative = 0;
     int product = 1;
     int limit = min(numberOfItems, [heap.heap count]);
     while (counter < limit) {
-        product = product * [heap extractMax];
+        int nextMax = [heap extractMax];
+        if (nextMax < 0) {
+            counterOfNegative++;
+        }
+        product = product * nextMax;
         counter++;
     }
+    if (isEven(counterOfNegative)) {
+        return product;
+    }
+    
+    // Second heaps uses sign of numbers to sort them.
+    heap = [[KLargest alloc] initWithElements:preparedInput ignoreSign:NO];
+    counter = 0;
+    product = 1;
+    limit = min(numberOfItems, [heap.heap count]);
+    while (counter < limit) {
+        int nextMax = [heap extractMax];
+        product = product * nextMax;
+        counter++;
+    }
+    
     return product;
 }
 @end
