@@ -3,42 +3,31 @@
 @implementation SquareDecomposer
 - (NSArray <NSNumber*>*)decomposeNumber:(NSNumber*)number {
     int initialNumber = [(NSNumber*) number intValue];
-    int maximalClosestNumber = initialNumber - 1;
-    int leftSpace = powl(initialNumber, 2);
-    NSMutableArray *res = [[NSMutableArray alloc] init];
-    while (maximalClosestNumber > 0) {
-        int leftSpaceAfterSubtraction = leftSpace - pow(maximalClosestNumber, 2);
-        if (leftSpaceAfterSubtraction >= 0) {
-            [res addObject:@(maximalClosestNumber)];
-            leftSpace = leftSpaceAfterSubtraction;
-        }
-        maximalClosestNumber--;
-        
-    }
-    NSLog(@"Result: %@", res);
-    NSLog(@"Left space: %d", leftSpace);
-    return [[res reverseObjectEnumerator] allObjects];
+    return [self decomposeNumberRec:initialNumber leftSpace:pow(initialNumber, 2)];
 }
 
-- (NSArray <NSNumber*>*)decomposeNumberRec:(NSNumber*)number
-                                 leftSpace:(int) leftSpace{
-    int initialNumber = [(NSNumber*) number intValue];
+- (NSMutableArray <NSNumber*>*)decomposeNumberRec:(int)initialNumber
+                                 leftSpace:(long) leftSpace {
     int maximalClosestNumber = initialNumber - 1;
     NSMutableArray *res = [[NSMutableArray alloc] init];
+    if (leftSpace == 0) {
+        return res;
+    }
     while (maximalClosestNumber > 0) {
         int leftSpaceAfterSubtraction = leftSpace - pow(maximalClosestNumber, 2);
         if (leftSpaceAfterSubtraction >= 0) {
-            [self decomposeNumberRec:maximalClosestNumber leftSpace:leftSpaceAfterSubtraction];
-            
-            [res addObject:@(maximalClosestNumber)];
-            leftSpace = leftSpaceAfterSubtraction;
+            res = [self decomposeNumberRec:maximalClosestNumber
+                                 leftSpace:leftSpaceAfterSubtraction];
+            if (res != nil) {
+                [res addObject:@(maximalClosestNumber)];
+                NSLog(@"Result: %@", res);
+                NSLog(@"Left space: %d", leftSpace);
+                return res;
+            }
         }
         maximalClosestNumber--;
-        
     }
-    NSLog(@"Result: %@", res);
-    NSLog(@"Left space: %d", leftSpace);
-    return [[res reverseObjectEnumerator] allObjects];
+    return nil;
 }
 
 @end
