@@ -17,9 +17,9 @@
 @property (nonatomic, assign) Node* left;
 @property (nonatomic, assign) Node* right;
 @property (nonatomic, assign) NSNumber* value;
-@property (nonatomic, assign) int maxSize;
+@property (nonatomic, assign, weak) Node* parent;
 
-- initWithLeft:(Node*) left right:(Node*) right value: (NSNumber*) value maxSize:(int) maxSize;
+- initWithLeft:(Node*) left right:(Node*) right value: (NSNumber*) value parent:(Node*) parent;
 - (Node*) clone;
 - (int) calcSize;
 - (NSString*) serialize;

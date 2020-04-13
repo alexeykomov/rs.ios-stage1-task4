@@ -14,14 +14,14 @@
 
 - (instancetype)initWithLeft:(Node *)left right:(Node *)right
                        value:(NSNumber *) value
-                     maxSize:(int) maxSize
+                     parent:(Node*) parent
 {
     self = [super init];
     if (self) {
         self.left = left;
         self.right = right;
         self.value = value;
-        self.maxSize = maxSize;
+        self.parent = parent;
     }
     return self;
 }
@@ -35,7 +35,7 @@
         newTree.right = [self.right clone];
     }
     newTree.value = self.value;
-    newTree.maxSize = self.maxSize;
+    newTree.parent = self.parent;
     return newTree;
 }
 
@@ -57,6 +57,13 @@
 }
 
 - (NSString *)serialize {
+//    Node *root = self;
+//
+//    while (root.parent != nil) {
+//        NSLog(@"Parent: %@", root.parent);
+//        root = self.parent;
+//    }
+    
     NSMutableArray *output = [[NSMutableArray alloc] init];
     int actualSize = [self calcSize];
     int maxSize = getNextTreeMaxSize(actualSize);

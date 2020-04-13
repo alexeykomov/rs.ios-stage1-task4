@@ -8,7 +8,7 @@
         return @"[]";
     }
     
-    Node *root = [[Node alloc] initWithLeft:nil right:nil value:@0 maxSize:count];
+    Node *root = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:nil];
     NSMutableSet *possibilities = [[NSMutableSet alloc] init];
     [self spawnSubTree:possibilities tree:root reserve:count - 1];
   
@@ -31,19 +31,19 @@
     
     NSLog(@"Serialized tree: %@", [tree serialize]);
     
-    clone1.left = [[Node alloc] initWithLeft:nil right:nil value:@0 maxSize:tree.maxSize];
+    clone1.left = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:clone1]; 
     
-    clone2.right = [[Node alloc] initWithLeft:nil right:nil value:@0 maxSize:tree.maxSize];
+    clone2.right = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:clone2];
     
-    clone3.left = [[Node alloc] initWithLeft:nil right:nil value:@0 maxSize:tree.maxSize];
-    clone3.right = [[Node alloc] initWithLeft:nil right:nil value:@0 maxSize:tree.maxSize];
+    clone3.left = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:clone3];
+    clone3.right = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:clone3];
     
-    [self spawnSubTree:possibilities tree:clone1 reserve:reserve - 1];
+    [self spawnSubTree:possibilities tree:clone1.left reserve:reserve - 1];
     
-    [self spawnSubTree:possibilities tree:clone2 reserve:reserve - 1];
+    [self spawnSubTree:possibilities tree:clone2.right reserve:reserve - 1];
     
-    [self spawnSubTree:possibilities tree:clone3 reserve:reserve - 2];
-    [self spawnSubTree:possibilities tree:clone3 reserve:reserve - 2];
+    [self spawnSubTree:possibilities tree:clone3.left reserve:reserve - 2];
+    [self spawnSubTree:possibilities tree:clone3.right reserve:reserve - 2];
 }
 
 @end
