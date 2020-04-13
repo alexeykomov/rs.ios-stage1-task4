@@ -19,7 +19,7 @@
 @property (nonatomic, assign) NSNumber* value;
 @property (nonatomic, assign, weak) Node* parent;
 
-- initWithLeft:(Node*) left right:(Node*) right value: (NSNumber*) value parent:(Node*) parent;
+- initWithLeft:(Node*) left right:(Node*) right value: (NSNumber*) value;
 - (Node*) clone;
 - (int) calcSize;
 - (NSString*) serialize;

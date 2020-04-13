@@ -14,14 +14,12 @@
 
 - (instancetype)initWithLeft:(Node *)left right:(Node *)right
                        value:(NSNumber *) value
-                     parent:(Node*) parent
 {
     self = [super init];
     if (self) {
         self.left = left;
         self.right = right;
         self.value = value;
-        self.parent = parent;
     }
     return self;
 }
@@ -35,7 +33,6 @@
         newTree.right = [self.right clone];
     }
     newTree.value = self.value;
-    newTree.parent = self.parent;
     return newTree;
 }
 

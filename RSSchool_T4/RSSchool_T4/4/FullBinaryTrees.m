@@ -8,42 +8,39 @@
         return @"[]";
     }
     
-    Node *root = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:nil];
-    NSMutableSet *possibilities = [[NSMutableSet alloc] init];
-    [self spawnSubTree:possibilities tree:root reserve:count - 1];
-  
-    return possibilities;
+    if (count == 1) {
+        return @"[0]";
+    }
+    NSMutableArray *res = [self getPossibleTrees:count];
+    NSString *resultLine = [res componentsJoinedByString:@","];
+    return resultLine;
  }
-     
-- (void) spawnSubTree:(NSMutableSet*) possibilities
-                 tree:(Node*) tree reserve:(int) reserve {
-    if (reserve == 0) {
-        [possibilities addObject:[tree serialize]];
-        return;
+
+- (NSMutableArray*) getPossibleTrees:(int) count {
+    NSMutableArray *res = [[NSMutableArray alloc] init];
+    
+    int counter = 2;
+    while (counter < count + 1) {
+        NSMutableArray *leftSubTree = [self getPossibleTrees:counter - 1];
+        NSMutableArray *rightSubTree = [self getPossibleTrees:count - counter];
+        int counterLeft = 0;
+        
+        for (counterLeft = 0; counterLeft < [leftSubTree count]; counterLeft++) {
+            Node *left = [leftSubTree objectAtIndex:counterLeft];
+            for (int counterRight = 0; counterRight < [rightSubTree count]; counterRight++) {
+                Node *right = [rightSubTree objectAtIndex:counterRight];
+                Node *tree = [[Node alloc] initWithLeft:nil right:nil value:@0];
+             
+                tree.left = (counterRight + 1) < [rightSubTree count] ? [left clone] : left;
+                tree.right = (counterLeft + 1) < [leftSubTree count] ? [right clone] : right;
+                
+                [res addObject:tree];
+                
+            }
+        }
+        counter += 2;
     }
-    if (reserve == 1 || reserve < 0) {
-        return;
-    }
-    
-    Node *clone1 = [tree clone];
-    Node *clone2 = [tree clone];
-    Node *clone3 = [tree clone];
-    
-    NSLog(@"Serialized tree: %@", [tree serialize]);
-    
-    clone1.left = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:clone1]; 
-    
-    clone2.right = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:clone2];
-    
-    clone3.left = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:clone3];
-    clone3.right = [[Node alloc] initWithLeft:nil right:nil value:@0 parent:clone3];
-    
-    [self spawnSubTree:possibilities tree:clone1.left reserve:reserve - 1];
-    
-    [self spawnSubTree:possibilities tree:clone2.right reserve:reserve - 1];
-    
-    [self spawnSubTree:possibilities tree:clone3.left reserve:reserve - 2];
-    [self spawnSubTree:possibilities tree:clone3.right reserve:reserve - 2];
+    return res;
 }
 
 @end
