@@ -1,9 +1,6 @@
 #import "ArrayCalculator.h"
 #import "KLargest.h"
-
-BOOL isEven(int inp) {
-    return inp % 2 == 0;
-}
+#import "../utils.h"
 
 int min(int a, int b) {
     if (a < b) {

@@ -21,6 +21,8 @@
 		25787FE9243F8E7B0066701D /* FullBinaryTreesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25787FE5243F8E7B0066701D /* FullBinaryTreesTests.m */; };
 		25787FEA243F8E7B0066701D /* ArrayProductCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25787FE6243F8E7B0066701D /* ArrayProductCalculatorTests.m */; };
 		5A275B42244361C100FE277A /* KLargest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A275B41244361C100FE277A /* KLargest.m */; };
+		5AC09D6A2444723E00F1D534 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC09D692444723E00F1D534 /* utils.m */; };
+		5AC09D6D24447CE600F1D534 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC09D6C24447CE600F1D534 /* Node.m */; };
 		BD47B5532268ED9F0060BDF3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BD47B5522268ED9F0060BDF3 /* AppDelegate.m */; };
 		BD47B5552268EDA10060BDF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD47B5542268EDA10060BDF3 /* Assets.xcassets */; };
 		BD47B5582268EDA10060BDF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD47B5562268EDA10060BDF3 /* LaunchScreen.storyboard */; };
@@ -59,6 +61,10 @@
 		25787FE6243F8E7B0066701D /* ArrayProductCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayProductCalculatorTests.m; sourceTree = "<group>"; };
 		5A275B40244361C100FE277A /* KLargest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLargest.h; sourceTree = "<group>"; };
 		5A275B41244361C100FE277A /* KLargest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLargest.m; sourceTree = "<group>"; };
+		5AC09D692444723E00F1D534 /* utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
+		5AC09D6B244472D700F1D534 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		5AC09D6C24447CE600F1D534 /* Node.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
+		5AC09D6E24447CEF00F1D534 /* Node.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		BD47B54E2268ED9F0060BDF3 /* RSSchool_T4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSchool_T4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD47B5512268ED9F0060BDF3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BD47B5522268ED9F0060BDF3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -127,6 +133,8 @@
 				25787FD2243F8E5F0066701D /* ExampleTrees.png */,
 				25787FD3243F8E5F0066701D /* FullBinaryTrees.h */,
 				25787FD5243F8E5F0066701D /* FullBinaryTrees.m */,
+				5AC09D6C24447CE600F1D534 /* Node.m */,
+				5AC09D6E24447CEF00F1D534 /* Node.h */,
 			);
 			path = 4;
 			sourceTree = "<group>";
@@ -172,6 +180,8 @@
 				BD47B5562268EDA10060BDF3 /* LaunchScreen.storyboard */,
 				BD47B5592268EDA10060BDF3 /* Info.plist */,
 				BD47B55A2268EDA10060BDF3 /* main.m */,
+				5AC09D692444723E00F1D534 /* utils.m */,
+				5AC09D6B244472D700F1D534 /* utils.h */,
 			);
 			path = RSSchool_T4;
 			sourceTree = "<group>";
@@ -294,7 +304,9 @@
 				25787FE0243F8E5F0066701D /* FullBinaryTrees.m in Sources */,
 				BD47B55B2268EDA10060BDF3 /* main.m in Sources */,
 				5A275B42244361C100FE277A /* KLargest.m in Sources */,
+				5AC09D6A2444723E00F1D534 /* utils.m in Sources */,
 				25787FDD243F8E5F0066701D /* ArrayCalculator.m in Sources */,
+				5AC09D6D24447CE600F1D534 /* Node.m in Sources */,
 				BD47B5532268ED9F0060BDF3 /* AppDelegate.m in Sources */,
 				25787FE1243F8E5F0066701D /* TelephoneFinder.m in Sources */,
 				25787FDA243F8E5F0066701D /* SquareDecomposer.m in Sources */,

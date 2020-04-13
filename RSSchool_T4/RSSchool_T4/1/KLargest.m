@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KLargest.h"
+#import "../utils.h"
 
 id getLeftChild(NSArray *nodes, int n) {
     return [nodes objectAtIndex:2 * n + 1];
@@ -19,19 +20,6 @@ id getRightChild(NSArray *nodes, int n) {
 
 id getParent(NSArray *nodes, int n) {
     return [nodes objectAtIndex:(n - 1) / 2];
-}
-
-int getLeftChildIndex(int n) {
-    return 2 * n + 1;
-}
-
-int getRightChildIndex(int n) {
-    return 2 * n + 2;
-}
-
-
-int getParentIndex(int n) {
-    return (n - 1) / 2;
 }
 
 int compare(int a, int b, BOOL ignoreSign) {
