@@ -17,10 +17,11 @@
 @property (nonatomic, assign) Node* left;
 @property (nonatomic, assign) Node* right;
 @property (nonatomic, assign) NSNumber* value;
-@property (nonatomic, assign, weak) Node* parent;
+@property (nonatomic, assign, weak) NSString* uuid;
 
-- initWithLeft:(Node*) left right:(Node*) right value: (NSNumber*) value parent:(Node*) parent;
+- initWithLeft:(Node*) left right:(Node*) right value: (NSNumber*) value;
 - (Node*) clone;
 - (int) calcSize;
 - (NSString*) serialize;
+- (Node*) findChildByUUID:(NSString*) uuid;
 @end

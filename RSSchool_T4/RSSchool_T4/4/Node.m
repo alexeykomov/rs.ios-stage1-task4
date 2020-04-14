@@ -14,29 +14,48 @@
 
 - (instancetype)initWithLeft:(Node *)left right:(Node *)right
                        value:(NSNumber *) value
-                     parent:(Node*) parent
 {
     self = [super init];
     if (self) {
         self.left = left;
         self.right = right;
         self.value = value;
-        self.parent = parent;
+        self.uuid = [[NSUUID UUID] UUIDString];
     }
     return self;
 }
 
 - (Node *)clone {
     Node *newTree = [[Node alloc] init];
-    if (newTree.left) {
+    if (self.left) {
         newTree.left = [self.left clone];
     }
-    if (newTree.right) {
+    if (self.right) {
         newTree.right = [self.right clone];
     }
     newTree.value = self.value;
-    newTree.parent = self.parent;
+    newTree.uuid = self.uuid;
     return newTree;
+}
+
+- (Node *)findChildByUUID:(NSString*) uuid {
+    Node *found = nil;
+    if ([self.uuid isEqualToString:uuid]) {
+        return self;
+    }
+    if (self.left) {
+        found = [self.left findChildByUUID:uuid];
+        if (found != nil) {
+            return found;
+        }
+    }
+    if (self.right) {
+        found = [self.right findChildByUUID:uuid];
+        if (found != nil) {
+            return found;
+        }
+    }
+    return found;
 }
 
 - (int) calcSize {
